@@ -1204,14 +1204,14 @@ void product_menu()
 {
       char ch2;
       int num;
-      cout<<"\n==========================   PRODUCTS MENU   ==========================="<<endl;
-      cout<<"1.CREATE PRODUCTS"<<endl;
-      cout<<"2.DISPLAY ALL PRODUCTS AVAILABLE"<<endl;
-      cout<<"3.SEARCH RECORD (QUERY) "<<endl;
-      cout<<"4.MODIFY PRODUCTS"<<endl;
-      cout<<"5.DELETE PRODUCTS"<<endl;
-      cout<<"6.BACK TO MAIN MENU"<<endl;
-      cout<<"Please Enter Your Choice (1-6) "<<endl;
+      // cout<<"\n==========================   PRODUCTS MENU   ==========================="<<endl;
+      // cout<<"1.CREATE PRODUCTS"<<endl;
+      // cout<<"2.DISPLAY ALL PRODUCTS AVAILABLE"<<endl;
+      // cout<<"3.SEARCH RECORD (QUERY) "<<endl;
+      // cout<<"4.MODIFY PRODUCTS"<<endl;
+      // cout<<"5.DELETE PRODUCTS"<<endl;
+      // cout<<"6.BACK TO MAIN MENU"<<endl;
+      // cout<<"Please Enter Your Choice (1-6) "<<endl;
       cin>>ch2;
       switch(ch2)
       {

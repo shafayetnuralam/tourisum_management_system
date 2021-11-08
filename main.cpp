@@ -9,6 +9,7 @@
 #include<sstream>
 #include<typeinfo>
 #include <cmath>
+#include <conio.h>
 using namespace std;
 struct order
 {
@@ -45,7 +46,7 @@ class customer
 {
       int cust_id;
       char cname[100];
-      char address[100];
+      char address[500];
       char phno[15];
 public:
       void modifycust_data(int n1,char nm[15],char add[15],char q[15]);
@@ -69,14 +70,14 @@ public:
       void cust_input(int custid)
       {
             cout<<"-------------------------------------------------------------------------"<<endl;
-            cout<<"PACKAGE NO     : ";
+            cout<<"TOURIST NO     : ";
             cust_id=custid;
             cout<<cust_id<<endl;
-            cout<<"NAME OF PACKAGE:"<<endl;
+            cout<<"NAME OF TOURIST:"<<endl;
             cin>>cname;
-            cout<<"PRICE         :"<<endl;
+            cout<<"ADDRESS         :"<<endl;
             cin>>address;
-            cout<<"DETAILS.       :"<<endl;
+            cout<<"PHONE NO.       :"<<endl;
             cin>>phno;
             cout<<"-------------------------------------------------------------------------"<<endl;
       }
@@ -88,10 +89,10 @@ public:
       void show_cust()
       {
              cout<<"-------------------------------------------------------------------------"<<endl;
-             cout<<"PACKAGE NO      : "<<cust_id<<endl;
-             cout<<"NAME OF PACKAGE : "<<cname<<endl;
-             cout<<"PRICE          : "<<address<<endl;
-             cout<<"DETAILS.        : "<<phno<<endl;
+             cout<<"TOURIST NO      : "<<cust_id<<endl;
+             cout<<"NAME OF TOURIST : "<<cname<<endl;
+             cout<<"ADDRESS          : "<<address<<endl;
+             cout<<"PHONE NO.        : "<<phno<<endl;
              cout<<"-------------------------------------------------------------------------"<<endl;
       }
 };
@@ -103,9 +104,9 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
       char yes1,yes2,yes3;
       cust_id=n1;
       strcpy(cname,nm);
-      cout<<"NAME OF PACKAGE:"<<endl;
+      cout<<"NAME OF TOURIST:"<<endl;
       cout<<cname<<endl;
-      cout<<"Want to change the name of PACKAGE ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+      cout<<"Want to change the name of tourist ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       int flag=0;
       while(1)
       {
@@ -128,7 +129,7 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
             strcpy(cname,tmpnm);
       }
       strcpy(address,add);
-      cout<<"PRICE:"<<endl;
+      cout<<"TOURIST ADDRESS:"<<endl;
       cout<<address<<endl;
       cout<<"Want to change the address ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
@@ -153,7 +154,7 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
             strcpy(address,tmpnm2);
       }
       strcpy(phno,q);
-      cout<<"DETAILS.:"<<endl;
+      cout<<"TOURIST PHONE NO.:"<<endl;
       cout<<phno<<endl;
       cout<<"Want to change the phone no. ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
@@ -162,7 +163,7 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
             cin>>yes3;
             if(yes3== 'Y' || yes3== 'y')
             {
-                  cout<<"Enter new Package Details.\n";
+                  cout<<"Enter new phone no.\n";
                   cin>>tmpnm3;
                   flag=1;
                   break;
@@ -178,9 +179,9 @@ void customer::modifycust_data(int n1,char nm[15],char add[15],char q[15])
             strcpy(phno,tmpnm3);
       }
       if((yes3== 'Y' || yes3== 'y') || (yes2== 'Y' || yes2== 'y') || (yes1== 'Y' || yes1== 'y'))
-            cout<<"*********************   NEW PACKAGE RECORD SAVED   **********************"<<endl;
+            cout<<"*********************   NEW TOURIST RECORD SAVED   >   Please Enter to continue **********************"<<endl;
       else
-            cout<<"********************   NO PACKAGE RECORD CHANGED   **********************"<<endl;
+            cout<<"********************   NO TOURIST RECORD CHANGED   **********************"<<endl;
 }
 //Function to add the records in file
 void write_customer()
@@ -196,7 +197,7 @@ void write_customer()
        cobj.cust_input(r);
        objoff.write((char*)&cobj,sizeof(customer));
        objoff.close();
-       cout<<"***********************   PACKAGE RECORD SAVED   ***********************"<<endl;
+       cout<<"***********************   TOURIST RECORD SAVED   ***********************"<<endl;
        cin.ignore();
        cin.get();
 }
@@ -251,7 +252,7 @@ void display_cust_sp(int n)
       cout<<"\n\nRecord doesnot exist"<<endl;
       cin.get();
 }
-//FUNCTION TO DISPLAY ALL THE CUSTOMER TABULAR FORM
+//FUNCTION TO DISPLAY ALL THE TOURIST TABULAR FORM
 void cust_tabular()
 {
       int r=0,col=10;
@@ -285,13 +286,13 @@ void cust_tabular()
       inFile.close();
       cin.get();
 }
-//function to display heading of PACKAGE details
+//function to display heading of customer details
 void customer_detail_heading()
 {
       cout<<"========================================================================="<<endl;
-      cout<<"   ************************  PACKAGE DETAILS  **********************    "<<endl;
+      cout<<"  <<<<< TOURIST DETAILS >>>>>    "<<endl;
       cout<<"========================================================================="<<endl;
-      cout<<"ID No"<<setw(13)<<"PACKAGE"<<setw(23)<<"PRICE"<<setw(27)<<"DETAILS"<<endl;
+      cout<<"TOURIST.NO"<<setw(12)<<"NAME"<<setw(22)<<"ADDRESS"<<setw(25)<<"PHONE NO"<<endl;
       cout<<"-------------------------------------------------------------------------"<<endl;
 }
 //FUNCTION TO MODIFY customer RECORD
@@ -350,7 +351,7 @@ void modify_cust_record(int n)
             File.close();
       }
 }
-//FUNCTION TO DELETE THE RECORD OF THE CUSTOMER AVAILABLE
+//FUNCTION TO DELETE THE RECORD OF THE TOURIST AVAILABLE
 void deletecust_record(int n)
 {
       customer cust;
@@ -465,7 +466,7 @@ void write_customer1()
        cobj.cust_input(r);
        objoff.write((char*)&cobj,sizeof(customer));
        objoff.close();
-       cout<<"***********************   PACKAGE RECORD SAVED   ***********************"<<endl;
+       cout<<"***********************   TOURIST RECORD SAVED   ***********************"<<endl;
        cin.ignore();
        cin.get();
        cust_menu3();
@@ -474,7 +475,9 @@ int before_order()
 {
       int f=-1,num=0;
       customer cust;
-      cout<<"ENTER THE PACKAGE ID TO BILL:"<<endl;
+
+      cust_tabular();
+      cout<<"ENTER THE TOURIST ID TO CONFIRM BOOKING:"<<endl;
       cin>>num;
       ifstream inFile;
       inFile.open("customer.csv",ios::binary);
@@ -516,30 +519,30 @@ class product
       void create_prod(int rn1)
       {
              cout<<"-------------------------------------------------------------------------"<<endl;
-             cout<<"PRODUCT NO      : ";
+             cout<<"PACKAGE NO      : ";
              prodid=rn1;
              cout<<prodid<<endl;
-             cout<<"NAME OF PRODUCT :";
+             cout<<"Form :";
              cin>>name;
-             cout<<"COMPANY         :";
+             cout<<"To  :";
              cin>>company;
-             cout<<"PRODUCT PRICE   :";
+             cout<<" Price          :";
              cin>>price;
-             cout<<"QUANTITY        :";
+             cout<<"Days            :";
              cin>>qty;
-             cout<<"DISCOUNT%       :";
+             cout<<"Discount%       :";
              cin>>dis;
              cout<<"-------------------------------------------------------------------------"<<endl;
       }
       void show_prod()
       {
              cout<<"-------------------------------------------------------------------------"<<endl;
-             cout<<"PRODUCT NO            : "<<prodid<<endl;
-             cout<<"NAME OF PRODUCT       : "<<name<<endl;
-             cout<<"COMPANY               : "<<company<<endl;
-             cout<<"PRODUCT PRICE         : "<<price<<endl;
-             cout<<"QUANTITY              : "<<qty<<endl;
-             cout<<"DISCOUNT%             : "<<dis<<"%"<<endl;
+             cout<<"PACKAGE NO            : "<<prodid<<endl;
+             cout<<"Form                  : "<<name<<endl;
+             cout<<"To                    : "<<company<<endl;
+             cout<<"Price                 : "<<price<<endl;
+             cout<<"Days                  : "<<qty<<endl;
+             cout<<"Discount%             : "<<dis<<"%"<<endl;
              cout<<"-------------------------------------------------------------------------"<<endl;
        }
       //Function shows product data in tabular form
@@ -582,20 +585,20 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
 {
       char tmpnm[40],tmpnm2[40];
       char yes1,yes2;
-       cout<<"PRODUCT NO      : ";
+       cout<<"PACKAGE NO      : ";
        prodid=n1;
        cout<<prodid<<endl;
        strcpy(name,snm);
-       cout<<"NAME OF PRODUCT :"<<endl;
+       cout<<"Form :"<<endl;
        cout<<name<<endl;
-       cout<<"Want to change the name of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+       cout<<"Want to change the Form ? (Yes[ y or Y ] or NO [n or N])"<<endl;
        int flag=0;
        while(1)
        {
             cin>>yes1;
             if(yes1== 'Y' || yes1== 'y')
             {
-                  cout<<"Enter new name\n";
+                  cout<<"Enter Update Form\n";
                   cin>>tmpnm;
                   flag=1;
                   break;
@@ -612,16 +615,16 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
        }
        strcpy(company,companynm);
        //COMPANY NAME TO BE MODIFY
-       cout<<"COMPANY NAME:"<<endl;
+       cout<<"To:"<<endl;
        cout<<company<<endl;
-       cout<<"Want to change the company name ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+       cout<<"Want to change the To? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
       while(1)
       {
             cin>>yes2;
             if(yes2== 'Y' || yes2== 'y')
             {
-                  cout<<"Enter new company name:\n";
+                  cout<<"Enter Update To:\n";
                   cin>>tmpnm2;
                   flag=1;
                   break;
@@ -640,14 +643,14 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
       //add the line to display price
       float tmppr=0;
       char yes4,yes3,yes5;
-      cout<<"Want to change the price of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+      cout<<"Want to change the price of Package ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
       while(1)
       {
             cin>>yes3;
             if(yes3== 'Y' || yes3== 'y')
             {
-                  cout<<"Enter new price of product:\n";
+                  cout<<"Enter new price of Package:\n";
                   cin>>tmppr;
                   flag=1;
                   break;
@@ -662,17 +665,17 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
       {
             price=tmppr;
       }
-      cout<<"QUANTITY:"<<endl;
+      cout<<"DAYS:"<<endl;
       //add the line to display quantity
       int tmpqty=0;
-      cout<<"Want to change the quantity of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+      cout<<"Want to change the Day of Package ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
       while(1)
       {
             cin>>yes4;
             if(yes4== 'Y' || yes4== 'y')
             {
-                  cout<<"Enter new quantity:\n";
+                  cout<<"Enter new Day:\n";
                   cin>>tmpqty;
                   flag=1;
                   break;
@@ -687,10 +690,10 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
       {
             qty=tmpqty;
       }
-      cout<<"DISCOUNT%:"<<endl;
+      cout<<"Discount%:"<<endl;
        //add the line to display discount
       float tmpdis=0;
-      cout<<"Want to change the discount of product ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+      cout<<"Want to change the discount of Package ? (Yes[ y or Y ] or NO [n or N])"<<endl;
       flag=0;
       while(1)
       {
@@ -713,9 +716,9 @@ void product::modifydata(int n1,char snm[15],char companynm[15],int q)
             dis=tmpdis;
       }
       if((yes3== 'Y' || yes3== 'y') || (yes2== 'Y' || yes2== 'y') || (yes1== 'Y' || yes1== 'y') || (yes4== 'Y' || yes4== 'y') || (yes5== 'Y' || yes5== 'y'))
-            cout<<"*********************   NEW PRODUCT RECORD SAVED   *********************"<<endl;
+            cout<<"*********************   NEW PACKAGE RECORD SAVED   *********************"<<endl;
       else
-            cout<<"********************   NO PRODUCT RECORD CHANGED   *********************"<<endl;
+            cout<<"********************   NO PACKAGE RECORD CHANGED   *********************"<<endl;
 }
 // Global declaration for stream object
 fstream fp;
@@ -735,7 +738,7 @@ void write_book()
       pr.create_prod(rnn);
       fp.write((char*)&pr,sizeof(product));
       fp.close();
-      cout<<"***********************  PRODUCTS RECORD SAVED  ************************"<<endl;
+      cout<<"***********************  PACKAGE RECORD SAVED  ************************"<<endl;
       cout<<"Press any key to continue..."<<endl;
       cin.ignore();
       cin.get();
@@ -810,12 +813,12 @@ void place_order()
                    cout<<"========================================================================"<<endl;
             cout<<"                             PLACE YOUR ORDER                           "<<endl;
             cout<<"========================================================================"<<endl;
-                  cout<<"ENTER THE PRODUCT NO: "<<endl;
+                  cout<<"ENTER THE RESERVATION ID: "<<endl;
                   cin>>pr1;
                   k=search(pr1);
                   if(k>0)
                   {
-                        cout<<"Enter the Quantity:"<<endl;
+                        cout<<"Enter Number Of Tourist:"<<endl;
                         cin>>q1;
                         copyme(k,o1,q1,c);
                         ptx[v]=pr1;
@@ -823,17 +826,17 @@ void place_order()
                   }
                   else
                   {
-                        cout<<"PRODUCT not found"<<endl;
+                        cout<<"TOURIST not found"<<endl;
                   }
-                  cout<<"Do you want purchase more ? (Yes[ y or Y ] or NO [n or N])"<<endl;
+                  cout<<"Do you want Booking More ? (Yes[ y or Y ] or NO [n or N])"<<endl;
                   cin>>ch;
             }while(ch=='y' || ch=='Y');
-            cout<<"Thank You For Placing The Order  ........"<<endl<<endl;
+            cout<<"Thank You For Booking  ........"<<endl<<endl;
             cin.get();
             cout<<"========================================================================\n"<<endl;
             cout<<"*****************************   INVOICE   ******************************"<<endl;
             cout<<"------------------------------------------------------------------------"<<endl;
-            cout<<"PR.No."<<setw(7)<<"NAME"<<setw(10)<<"Qty"<<setw(12)<<"Price"<<setw(13)<<"Amount"<<setw(23)<<"Amount - discount"<<endl<<endl;
+            cout<<"R.NO"<<setw(10)<<"FORM"<<setw(15)<<"TO"<<setw(12)<<"PRICE"<<setw(12)<<"DAYS"<<setw(12)<<"Discount"<<endl;
             int yy=8;
             for(int x=0;x<c;x++)
             {
@@ -849,7 +852,6 @@ void place_order()
              yy++;
              cout<<"\n		  TOTAL AMOUNT     :   "<<"Tk."<<total<<endl;
              yy++;
-            //  cout<<"		  CGST             :   "<<"+"<<ttaxt/2<<"%"<<endl;
              cout<<"		  Vat             :   "<<"+"<<ttaxt/2<<"%"<<endl;
              yy++;
              cout<<"-------------------------------------------------------------------------"<<endl;
@@ -927,9 +929,9 @@ void prod_tabular()
 void product_detail_heading()
 {
       cout<<"========================================================================"<<endl;
-      cout<<"*************************   PRODUCTS DETAILS   *************************"<<endl;
+      cout<<"*************************   Reservation Details   *************************"<<endl;
       cout<<"========================================================================"<<endl;
-      cout<<"PROD.NO"<<setw(15)<<"NAME"<<setw(15)<<"COMPANY"<<setw(15)<<"PRICE"<<setw(15)<<"QUANTITY"<<setw(15)<<"DISCOUNT"<<endl;
+      cout<<"R.NO"<<setw(10)<<"FORM"<<setw(15)<<"TO"<<setw(12)<<"PRICE"<<setw(12)<<"DAYS"<<setw(12)<<"Discount"<<endl;
       cout<<"------------------------------------------------------------------------"<<endl;
 }
 //FUNCTION TO MODIFY RECORD
@@ -1141,11 +1143,12 @@ void copyme(int k2,order order1[50],int q1,int &c2)
 // INTRODUCTION FUNCTION
 void intro()
 {
-      cout<<"**************  T O U R I SM   M A N A G E M E N T  ***************"<<endl;
-      cout<<"-------------------------------------------------------------------------"<<endl;
-      cout<<"***************************   S Y S T E M   *****************************"<<endl;
       cout<<endl;
-      cout<<"========================================================================="<<endl;
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<">>>>>>>>>>>>>>>>>>> TOURISM MANAGEMENT SYSTEM <<<<<<<<<<<<<<<<<"<<endl;
+      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<endl;
+       // cout<<"============================Please enter valid option================================"<<endl;
       cin.get();
 }
 // Customer Menu Function
@@ -1153,12 +1156,12 @@ void customer_menu()
 {
       char ch2;
       int num;
-      cout<<"\n==========================   PACKAGE MENU   =========================="<<endl;
-      cout<<"1.CREATE PACKAGE DETAILS"<<endl;
-      cout<<"2.DISPLAY ALL PACKAGE DETAILS"<<endl;
+      cout<<"\n========================== TOURIST MENU   =========================="<<endl;
+      cout<<"1.CREATE TOURIST DETAILS"<<endl;
+      cout<<"2.DISPLAY ALL TOURIST DETAILS"<<endl;
       cout<<"3.SEARCH RECORD (QUERY) "<<endl;
-      cout<<"4.MODIFY PACKAGE RECORDS"<<endl;
-      cout<<"5.DELETE PACKAGE RECORDS"<<endl;
+      cout<<"4.MODIFY TOURIST RECORDS"<<endl;
+      cout<<"5.DELETE TOURIST RECORDS"<<endl;
       cout<<"6.BACK TO MAIN MENU"<<endl;
       cout<<"Please Enter Your Choice (1-6) "<<endl;
       cin>>ch2;
@@ -1173,27 +1176,27 @@ void customer_menu()
                   customer_menu();
                   break;
             case '3':
-                  cout<<"ENTER THE PACKAGE ID TO BE SEARCHED:"<<endl;
+                  cout<<"ENTER THE TOURIST TO BE SEARCHED:"<<endl;
                   cin>>num;
                   display_cust_sp(num);
                   customer_menu();
                   break;
             case '4':
                   cust_tabular();
-                  cout<<"\nENTER THE PACKAGE ID TO BE MODIFIED:"<<endl;
+                  cout<<"\nENTER THE TOURIST TO BE MODIFIED:"<<endl;
                   cin>>num;
                   modify_cust_record(num);
                   customer_menu();
                   break;
             case '5':
                   cust_tabular();
-                  cout<<"\nENTER THE PACKAGE ID TO BE DELETED:"<<endl;
+                  cout<<"\nENTER THE TOURIST TO BE DELETED:"<<endl;
                   cin>>num;
                   deletecust_record(num);
                   customer_menu();
                   break;
             case '6':
-                  mainMenu();
+                  administratormenu();
                   break;
             default:
                   cout<<"Please enter valid option"<<endl;
@@ -1204,14 +1207,14 @@ void product_menu()
 {
       char ch2;
       int num;
-      // cout<<"\n==========================   PRODUCTS MENU   ==========================="<<endl;
-      // cout<<"1.CREATE PRODUCTS"<<endl;
-      // cout<<"2.DISPLAY ALL PRODUCTS AVAILABLE"<<endl;
-      // cout<<"3.SEARCH RECORD (QUERY) "<<endl;
-      // cout<<"4.MODIFY PRODUCTS"<<endl;
-      // cout<<"5.DELETE PRODUCTS"<<endl;
-      // cout<<"6.BACK TO MAIN MENU"<<endl;
-      // cout<<"Please Enter Your Choice (1-6) "<<endl;
+      cout<<"\n==========================   PACKAGE MENU   ==========================="<<endl;
+      cout<<"1.CREATE PACKAGE"<<endl;
+      cout<<"2.DISPLAY ALL PACKAGE AVAILABLE"<<endl;
+      cout<<"3.SEARCH RECORD (QUERY) "<<endl;
+      cout<<"4.MODIFY PACKAGE"<<endl;
+      cout<<"5.DELETE PACKAGE"<<endl;
+      cout<<"6.BACK TO MAIN MENU"<<endl;
+      cout<<"Please Enter Your Choice (1-6) "<<endl;
       cin>>ch2;
       switch(ch2)
       {
@@ -1220,25 +1223,26 @@ void product_menu()
                   product_menu();
                   break;
             case '2':
-                  prod_tabular();//product_detail_heading();
+                  prod_tabular();
+                  //product_detail_heading();
                   product_menu();
                   break;
             case '3':
-                  cout<<"\nENTER THE PRODUCT ID TO BE SEARCHED:"<<endl;
+                  cout<<"\nENTER THE PACKAGE ID TO BE SEARCHED:"<<endl;
                   cin>>num;
                   display_sp(num);
                   product_menu();
                   break;
             case '4':
                   prod_tabular();
-                  cout<<"\nENTER THE PRODUCT ID TO BE MODIFIED:"<<endl;
+                  cout<<"\nENTER THE PACKAGE ID TO BE MODIFIED:"<<endl;
                   cin>>num;
                   modify_record(num);
                   product_menu();
                   break;
             case '5':
                   prod_tabular();
-                  cout<<"\nENTER THE PRODUCT ID TO BE DELETED:"<<endl;
+                  cout<<"\nENTER THE PACKAGE ID TO BE DELETED:"<<endl;
                   cin>>num;
                   delete_record(num);
                   product_menu();
@@ -1259,8 +1263,8 @@ void cust_menu1()
       cout<<"\n-------------------------------------------------------------------------"<<endl;
       cout<<"		E N T E R   C U S T O M E R   D E T A I L S :\n";
       cout<<"-------------------------------------------------------------------------"<<endl;
-      cout<<"1.CREATE NEW PACKAGE DETAIL"<<endl;
-      cout<<"2.DISPLAY ALL CUSTOMERS DETAILS"<<endl;
+      cout<<"1.CREATE NEW TOURIST DETAIL"<<endl;
+      cout<<"2.DISPLAY ALL TOURIST DETAILS"<<endl;
       cout<<"3.BACK TO MAIN MENU"<<endl;
       cout<<"4.CONTINUE TO BILL\n"<<endl;
       cout<<"Please Enter Your Choice (1-4) "<<endl;
@@ -1293,9 +1297,8 @@ void cust_menu2()
       cout<<"\n-------------------------------------------------------------------------"<<endl;
       cout<<"		C H O O S E   N E X T   O P T I O N S:\n";
       cout<<"-------------------------------------------------------------------------"<<endl;
-      cout<<"1.CREATE NEW PACKAGE DETAIL"<<endl;
+      cout<<"1.CREATE NEW TOURIST DETAIL"<<endl;
       cout<<"2.BACK TO MAIN MENU"<<endl;
-      cout<<"3.CONTINUE TO BILL\n"<<endl;
       cout<<"Please Enter Your Choice (1-3) "<<endl;
       cin>>ch2;
       switch(ch2)
@@ -1322,7 +1325,7 @@ void cust_menu3()
       cout<<"\n-------------------------------------------------------------------------"<<endl;
       cout<<"		C H O O S E   N E X T   O P T I O N S:\n";
       cout<<"-------------------------------------------------------------------------"<<endl;
-      cout<<"1.DISPLAY ALL CUSTOMERS DETAILS"<<endl;
+      cout<<"1.DISPLAY ALL TOURIST DETAILS"<<endl;
       cout<<"2.BACK TO MAIN MENU"<<endl;
       cout<<"3.CONTINUE TO BILL\n"<<endl;
       cout<<"Please Enter Your Choice (1-3) "<<endl;
@@ -1350,79 +1353,33 @@ void mainMenu(){
      char ch;
       do
       {
+            
                   cout<<endl;
-                  cout<<"-------------------------------------------------------------------------"<<endl;
-                  cout<<"*********   TOURISM MANAGEMENT SYSTEM  ***********"<<endl;
-                  cout<<"-------------------------------------------------------------------------"<<endl;
+
+                  cout<<"<<<< TOURISM MANAGEMENT SYSTEM >>>>"<<endl;
                   cout<<endl;
             cout<<"=============================   MAIN MENU   ============================"<<endl;
             cout<<"1. BOOKING"<<endl;
+            // cout<<"2. CREATE NEW TOURIST DETAIL"<<endl;
+            // cout<<"3. DISPLAY ALL TOURIST DETAILS"<<endl;
+            // cout<<"4. DISPLAY ALL PRODUCTS AVAILABLE"<<endl;
             cout<<"2. EXIT"<<endl;
             cout<<"========================================================================"<<endl;
             cout<<"Please Select Your Option (1-2) "<<endl;
             cin>>ch;
             switch(ch)
             {
-                  case '1':
-                        // cust_order();
-            
+                 case '1':
+                        place_order();
                         break;
-      
                   case '2':
                         exit(0);
                   default :
                         cout<<"Please enter valid option"<<endl;
             }
-      }while(ch!='2');
+      }while(ch!='5');
     }
 
-//Order Foodr menu function
-void cust_order()
-{
-	char 
-      fullname[30], 
-     
-            piz1[]="Chicken Fajita" ,
-            piz2[]="Chicken Bar BQ" ,
-            piz3[]="Peri Peri" ,
-            piz4[]="Creamy Max", 
-            drinks1[]="Mountain Dew", 
-            drinks2[]="Coca Cola", 
-            drinks3[]="Royal",
-            burger_1[]="Zinger Burger",
-            burger_2[]="Chicken Burger",
-            burger_3[]="Beef Burger";
-
-	char sandwich_1[]="Club Sandwich", sandwich_2[]="Chicken Crispy Sandwich", sandwich_3[]="Extream Veg Sandwich";
-
-	char fried1[]="Chicken Fried", 
-           fried2[]="Prawn Fried", 
-           fried3[]="Beef Fried",
-           gotobeginning ;
-
-	int option=0,pizzaoption,pizzaoption1, qty;// time=40;
-
-	starting:
-	system("cls");
-                  cout<<endl;
-                  cout<<"-------------------------------------------------------------------------"<<endl;
-                  cout<<"*********   TOURISM MANAGEMENT SYSTEM  ***********"<<endl;
-                  cout<<"-------------------------------------------------------------------------"<<endl;
-                  cout<<endl;
-
-	cout<<"Please Enter Your Name: ";
-
-	cin.getline(fullname, 20);
-	cout<<"Hello "<<fullname<<"\n\nWhat would you like to order?\n\n";
-
-       prod_tabular();
-
-	cout<<"[Choice 1] Pizzas\n";
-	cout<<"\nPlease Enter your Choice: ";
-	cin>>option;
-
-	
-}
 
 // Administrator menu function
 void administratormenu()
@@ -1432,9 +1389,9 @@ void administratormenu()
       {
             cout<<endl;
             cout<<"=========================   ADMINISTRATOR MENU   ======================="<<endl;
-            cout<<"1. Package Creation"<<endl;
-            // cout<<"2. Food Menu"<<endl;
-            // cout<<"3. BACK TO MAIN MENU"<<endl;
+            cout<<"1. TOURIST MENU"<<endl;
+            cout<<"2. PACKAGE MENU "<<endl;
+            cout<<"3. EXIT"<<endl;
             cout<<"========================================================================"<<endl;
             cout<<"Please Select Your Option (1-3) "<<endl;
             cin>>ch;
@@ -1447,8 +1404,8 @@ void administratormenu()
                               product_menu();
                               break;
                         case '3':
-                              mainMenu();
-                              break;
+                           exit(0);
+                           
                         default :
                               cout<<"Please enter valid option"<<endl;
                   }
@@ -1458,18 +1415,17 @@ int Login()
 {
       label:
       cout<<endl;
-      cout<<"-------------------------------------------------------------------------"<<endl;
-      cout<<"*********  TOURISM MANAGEMENT SYSTEM  ***********"<<endl;
-      cout<<"-------------------------------------------------------------------------"<<endl;
+      cout<<"*********   TOURISM MANAGEMENT SYSTEM "<<endl;
       cout<<endl;
       cout<<"1.REGISTER"<<endl;
       cout<<"2.USER"<<endl;
       cout<<"3.ADMIN"<<endl;
       cout<<"4.EXIT"<<endl;
 
-      
+
       string p,q,w,a,b,c,d,e;
       int x;string s;
+      double mobileNumber;
       cin>>x;
       if(x==1)
       {
@@ -1478,11 +1434,12 @@ int Login()
                   cin>>a;
                   cout<<"ENTER YOUR PASSWORD :";
                   cin>>b;
-                  cout<<"ENTER YOUR DESIGNATION :";
+                  cout<<"ENTER YOUR MOBILE NO :";
                   cin>>c;
-                  cout<<"ENTER YOUR EMAILL :";
+
+                  cout<<"ENTER YOUR Age :";
                   cin>>d;
-                  cout<<"ENTER YOUR  MOBILE NO :";
+                  cout<<"ENTER YOUR Designation :";
                   cin>>e;
                   s= a+" "+ b +" "+ c +" "+ d +" "+ e;
                   ifstream fin;
@@ -1516,14 +1473,32 @@ int Login()
 
             string line;
             ifstream fin;
+            int hidepass=0;
             int offset=0;
+            char password[128], c;
+ 
             cout<<"********* USERNAME LOGIN ***********"<<endl;
             cout<<"ENTER YOUR USERNAME : ";
             cin>>q;
             cout<<"ENTER YOUR PASSWORD :";
-            cin>>w;
+          
+            while((c = getch()) != 13){
+            if(hidepass < 0)
+            hidepass = 0;
+            /* 8 is ASCII value of BACKSPACE character */
+            if(c == 8){
+            putch('\b');
+            putch(NULL);
+            putch('\b');
+            hidepass--;
             
-            q= q+" "+ w;
+            }
+            password[hidepass++] = c;
+            putch('*');
+            }
+
+
+            q= q+" "+ password;
             fin.open("myfile.txt");
             if(fin.is_open())
             {
@@ -1539,9 +1514,11 @@ int Login()
                 }
                   }
                   if(offset==0)
-                  {
+                  { 
+                       
+                        cout<<""<<endl;
                         cout<<"Sorry, You are unauthorised!!"<<endl;
-                        cout<<"Press 1 and enter, to go to Home page"<<endl;
+                        cout<<"Press enter, to go to Home page"<<endl;
                         char o;
                         cin>>o;
                         goto label;
@@ -1553,12 +1530,29 @@ int Login()
       }   else if(x==3){
             string line;
             ifstream fin;
+            int hidepass=0;
             int offset=0;
-            cout<<"*********  ADMIN LOGIN  ***********"<<endl;
+            char password[128], c;
+ 
+            cout<<"********* ADMIN LOGIN ***********"<<endl;
             cout<<"ENTER ADMIN NAME : ";
             cin>>q;
-            cout<<"ENTER PASSWORD : ";
-            cin>>w;
+            cout<<"ENTER PASSWORD :";
+          
+            while((c = getch()) != 13){
+            if(hidepass < 0)
+            hidepass = 0;
+            /* 8 is ASCII value of BACKSPACE character */
+            if(c == 8){
+            putch('\b');
+            putch(NULL);
+            putch('\b');
+            hidepass--;
+            
+            }
+            password[hidepass++] = c;
+            putch('*');
+            }
             q=q+" "+ w;
             fin.open("admin.txt");
             if(fin.is_open())
@@ -1568,6 +1562,7 @@ int Login()
                         getline(fin,line);
                         if(line.find(q,0)!=-1)
                         {
+                              cout<<""<<endl;
                               cout<<"You are logged in !!"<<endl;
                               offset=1;
                                     administratormenu();
@@ -1576,8 +1571,9 @@ int Login()
                   }
                   if(offset==0)
                   {
+                        cout<<""<<endl;
                         cout<<"Sorry, You are unauthorised!!"<<endl;
-                        cout<<"Press 1 and enter, to go to Home page"<<endl;
+                        cout<<"Press enter, to go to Home page"<<endl;
                         char o;
                         cin>>o;
                         goto label;
@@ -1596,7 +1592,9 @@ int Login()
 // THE MAIN FUNCTION OF PROGRAM
 int main()
 {
+
       intro();
       Login();
+
       return 0;
 }
